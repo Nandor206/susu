@@ -321,7 +321,10 @@
                 {
                     double L = b*Math.PI*a/180;
 
-                    Console.WriteLine($"A körív hossza: {L}");
+		    double T = a*a*MAth.PI/360*b;
+
+                    Console.WriteLine($"A határoló ív hossza: {L}");
+		    Console.WriteLine($"A körcikk területe: {T}");
                     return;
                 }
                 else
