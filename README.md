@@ -1,1 +1,3 @@
 # Suli
+
+### Things I do in school, beware that it will be private in the future.
