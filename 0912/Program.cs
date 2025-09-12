@@ -320,11 +320,10 @@
                 if (a > 0 && b > 0)
                 {
                     double L = b*Math.PI*a/180;
-
-		    double T = a*a*MAth.PI/360*b;
+					double T = a*a*MAth.PI/360*b;
 
                     Console.WriteLine($"A határoló ív hossza: {L}");
-		    Console.WriteLine($"A körcikk területe: {T}");
+					Console.WriteLine($"A körcikk területe: {T}");
                     return;
                 }
                 else
