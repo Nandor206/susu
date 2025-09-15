@@ -7,7 +7,7 @@
 
         }
 
-        static int SzamBekeres()
+        static int ISzamBekeres()
         {
             int? number = null;
             do
@@ -23,6 +23,29 @@
                 catch (OverflowException)
                 {
                     Console.WriteLine($"A megadott számnak {int.MinValue} és {int.MaxValue} között kell lennie, kérlek próbáld újra: ");
+                }
+            }
+            while (number is null);
+
+            return number.Value;
+        }
+
+        static uint USzamBekeres()
+        {
+            uint? number = null;
+            do
+            {
+                try
+                {
+                    number = uint.Parse(Console.ReadLine()!);
+                }
+                catch (FormatException)
+                {
+                    Console.Write("A megadott érték nem alakítható számmá, kérlek add meg újra: ");
+                }
+                catch (OverflowException)
+                {
+                    Console.WriteLine($"A megadott számnak {uint.MinValue} és {uint.MaxValue} között kell lennie, kérlek próbáld újra: ");
                 }
             }
             while (number is null);
@@ -68,16 +91,16 @@
         static void F3()
         {
             Console.WriteLine("Adj meg egy egész számot:");
-            int a = SzamBekeres();
+            int a = ISzamBekeres();
             Console.WriteLine($"A szám kétszerese: {a * (long)2}");
         }
 
         static void F4()
         {
             Console.WriteLine("Adj meg egy egész számot:");
-            int a = SzamBekeres();
+            int a = ISzamBekeres();
             Console.WriteLine("Adj meg egy egész számot:");
-            int b = SzamBekeres();
+            int b = ISzamBekeres();
 
             Console.WriteLine($"A számok összege: {a + b}");
             Console.WriteLine($"A számok különbözete: {a - b}");
@@ -95,9 +118,9 @@
         static void F5()
         {
             Console.WriteLine("Adj meg egy egész számot:");
-            int a = SzamBekeres();
+            int a = ISzamBekeres();
             Console.WriteLine("Adj meg egy egész számot:");
-            int b = SzamBekeres();
+            int b = ISzamBekeres();
 
             if (a > b)
             {
@@ -115,98 +138,65 @@
 
         static void F6()
         {
-            while (true)
-            {
-                Console.WriteLine("Adj meg egy pozitív egész számot:");
-                int a = SzamBekeres();
-                Console.WriteLine("Adj meg egy pozitív egész számot:");
-                int b = SzamBekeres();
-                Console.WriteLine("Adj meg egy pozitív egész számot:");
-                int c = SzamBekeres();
+            Console.WriteLine("Adj meg egy pozitív egész számot:");
+            uint a = USzamBekeres();
+            Console.WriteLine("Adj meg egy pozitív egész számot:");
+            uint b = USzamBekeres();
+            Console.WriteLine("Adj meg egy pozitív egész számot:");
+            uint c = USzamBekeres();
 
-                if (c > 0 && b > 0 && a > 0)
-                {
-                    if (c < b && c < a)
-                    {
-                        Console.WriteLine($"{c} a legkisebb szám");
-                    }
-                    else if (b < c && b < a)
-                    {
-                        Console.WriteLine($"{b} a legkisebb szám");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"{a} a legkisebb szám");
-                    }
-                    return;
-                }
-                else
-                {
-                    Console.WriteLine("Kérlek pozitív egész számokat adj meg.");
-                }
+            if (c < b && c < a)
+            {
+                Console.WriteLine($"{c} a legkisebb szám");
+            }
+            else if (b < c && b < a)
+            {
+                Console.WriteLine($"{b} a legkisebb szám");
+            }
+            else
+            {
+                Console.WriteLine($"{a} a legkisebb szám");
             }
         }
 
         static void F7()
         {
-            while (true)
-            {
-                Console.WriteLine("Add meg az első oldalt:");
-                int a = SzamBekeres();
-                Console.WriteLine("Add meg a második oldalt:");
-                int b = SzamBekeres();
-                Console.WriteLine("Add meg a harmadik oldalt:");
-                int c = SzamBekeres();
+            Console.WriteLine("Add meg az első oldalt:");
+            uint a = USzamBekeres();
+            Console.WriteLine("Add meg a második oldalt:");
+            uint b = USzamBekeres();
+            Console.WriteLine("Add meg a harmadik oldalt:");
+            uint c = USzamBekeres();
 
-                if (c > 0 && b > 0 && a > 0)
-                {
-                    if (a + b > c || a + c > b || b + c > a)
-                    {
-                        Console.WriteLine("Ezekkel az oldalakkal szerkeszthető háromszög.");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Ezekkel az oldalakkal nem szerkeszthető háromszög.");
-                    }
-                    return;
-                }
-                else
-                {
-                    Console.WriteLine("Kérlek pozitív egész számokat adj meg.");
-                }
+            if (a + b > c || a + c > b || b + c > a)
+            {
+                Console.WriteLine("Ezekkel az oldalakkal szerkeszthető háromszög.");
+            }
+            else
+            {
+                Console.WriteLine("Ezekkel az oldalakkal nem szerkeszthető háromszög.");
             }
         }
 
         static void F8()
         {
-            while (true)
-            {
-                Console.WriteLine("Add meg az első oldalt:");
-                int a = SzamBekeres();
-                Console.WriteLine("Add meg a második oldalt:");
-                int b = SzamBekeres();
-
-                if (b > 0 && a > 0)
-                {
-                    Console.WriteLine($"A számtani közepe a számoknak: {(a + b) / 2}");
-                    Console.WriteLine($"A mértani közepe a számoknak: {Math.Sqrt(a * b)}");
-                    return;
-                }
-                else
-                {
-                    Console.WriteLine("Kérlek pozitív egész számokat adj meg.");
-                }
-            }
+            Console.WriteLine("Add meg az első oldalt:");
+            uint a = USzamBekeres();
+            Console.WriteLine("Add meg a második oldalt:");
+            uint b = USzamBekeres();
+            
+            Console.WriteLine($"A számtani közepe a számoknak: {(a + b) / 2}");
+            Console.WriteLine($"A mértani közepe a számoknak: {Math.Sqrt(a * b)}");
         }
 
         static void F9()
         {
             Console.WriteLine("Add meg az első együtthatót:");
-            int a = SzamBekeres();
+            int a = ISzamBekeres();
             Console.WriteLine("Add meg a második együtthatót:");
-            int b = SzamBekeres();
+            int b = ISzamBekeres();
             Console.WriteLine("Add meg a harmadik együtthatót:");
-            int c = SzamBekeres();
+            int c = ISzamBekeres();
 
             double D = b * b - 4 * a * c;
             if (D < 0)
@@ -222,11 +212,11 @@
         static void F10()
         {
             Console.WriteLine("Add meg az első együtthatót:");
-            int a = SzamBekeres();
+            int a = ISzamBekeres();
             Console.WriteLine("Add meg a második együtthatót:");
-            int b = SzamBekeres();
+            int b = ISzamBekeres();
             Console.WriteLine("Add meg a harmadik együtthatót:");
-            int c = SzamBekeres();
+            int c = ISzamBekeres();
 
             double D = b * b - 4 * a * c;
             if (D >= 0)
@@ -243,294 +233,168 @@
 
         static void F11()
         {
-            while (true)
-            {
-                Console.WriteLine("Add meg az első oldalt:");
-                int a = SzamBekeres();
-                Console.WriteLine("Add meg a második oldalt:");
-                int b = SzamBekeres();
+            Console.WriteLine("Add meg az első oldalt:");
+            uint a = USzamBekeres();
+            Console.WriteLine("Add meg a második oldalt:");
+            uint b = USzamBekeres();
 
-                if (b > 0 && a > 0)
-                {
-                    double atlo = a * a + b * b;
-                    Console.WriteLine($"Az átló hossza: {atlo:F2}");
-                    return;
-                }
-                else
-                {
-                    Console.WriteLine("Kérlek pozitív egész számokat adj meg.");
-                }
-            }
+            double atlo = Math.Sqrt(a * a + b * b);
+            Console.WriteLine($"Az átló hossza: {atlo:F2}");
         }
 
         static void F12()
         {
-            while (true)
-            {
-                Console.WriteLine("Add meg az első élet:");
-                int a = SzamBekeres();
-                Console.WriteLine("Add meg a második élet:");
-                int b = SzamBekeres();
-                Console.WriteLine("Add meg a harmadik élet:");
-                int c = SzamBekeres();
+            Console.WriteLine("Add meg az első élet:");
+            uint a = USzamBekeres();
+            Console.WriteLine("Add meg a második élet:");
+            uint b = USzamBekeres();
+            Console.WriteLine("Add meg a harmadik élet:");
+            uint c = USzamBekeres();
 
-                if (c > 0 && b > 0 && a > 0)
-                {
-                    Console.WriteLine($"A téglatest felszíne: {2 * (a * b) + 4 * (b * c)}");
-                    Console.WriteLine($"A téglatest térfogata: {a * b * c}");
-                    return;
-                }
-                else
-                {
-                    Console.WriteLine("Kérlek pozitív egész számokat adj meg.");
-                }
-            }
+            Console.WriteLine($"A téglatest felszíne: {2 * (a * b) + 4 * (b * c)}");
+            Console.WriteLine($"A téglatest térfogata: {a * b * c}");
         }
 
         static void F13()
         {
-            while (true)
-            {
-                Console.WriteLine("Add meg a kör átmérőjét:");
-                double a = DoubleBekeres() / 2;
+            Console.WriteLine("Add meg a kör átmérőjét:");
+            uint a = USzamBekeres();
+            double r = a / 2.0;
 
-                if (a > 0)
-                {
-                    double K = 2 * a * Math.PI;
-                    double T = a * a * Math.PI;
+            double K = 2 * r * Math.PI;
+            double T = r * r * Math.PI;
 
-                    Console.WriteLine($"A kör kerülete: {K} és területe: {T}");
-                    return;
-                }
-                else
-                {
-                    Console.WriteLine("Kérlek pozitív egész számokat adj meg.");
-                }
-            }
+            Console.WriteLine($"A kör kerülete: {K} és területe: {T}");
         }
 
         static void F14()
         {
-            while (true)
-            {
-                Console.WriteLine("Add meg a körív sugarát:");
-                double a = DoubleBekeres();
-                Console.WriteLine("Add meg a körív középponti szögét fokban:");
-                double b = DoubleBekeres();
+            Console.WriteLine("Add meg a körív sugarát:");
+            uint a = USzamBekeres();
+            Console.WriteLine("Add meg a körív középponti szögét fokban:");
+            uint b = USzamBekeres();
 
-                if (a > 0 && b > 0)
-                {
-                    double L = b * Math.PI * a / 180;
-                    double T = a * a * MAth.PI / 360 * b;
+            double L = b * Math.PI * a / 180;
+            double T = a * a * Math.PI / 360 * b;
 
-                    Console.WriteLine($"A határoló ív hossza: {L}");
-                    Console.WriteLine($"A körcikk területe: {T}");
-                    return;
-                }
-                else
-                {
-                    Console.WriteLine("Kérlek pozitív egész számokat adj meg.");
-                }
-            }
+            Console.WriteLine($"A határoló ív hossza: {L}");
+            Console.WriteLine($"A körcikk területe: {T}");
         }
 
         static void F15()
         {
-            while (true)
+            Console.WriteLine("Adj meg egy pozitív egész számot:");
+            uint a = USzamBekeres();
+            
+            for (int i = 0; i < a; i++)
             {
-                Console.WriteLine("Adj meg egy pozitív egész számot:");
-                int a = SzamBekeres();
-
-                if (a > 0)
-                {
-                    for (int i = 0; i < a; i++)
-                    {
-                        Console.Write($"{i} ");
-                    }
-                    return;
-                }
-                else
-                {
-                    Console.WriteLine("Kérlek pozitív egész számokat adj meg.");
-                }
+                Console.Write($"{i} ");
             }
         }
 
         static void F16()
         {
-            while (true)
+            Console.WriteLine("Adj meg egy pozitív egész számot:");
+            uint a = USzamBekeres();
+            
+            for (int i = 0; i < a; i++)
             {
-                Console.WriteLine("Adj meg egy pozitív egész számot:");
-                int a = SzamBekeres();
-
-                if (a > 0)
-                {
-                    for (int i = 0; i < a; i++)
-                    {
-                        Console.WriteLine(i);
-                    }
-                    return;
-                }
-                else
-                {
-                    Console.WriteLine("Kérlek pozitív egész számokat adj meg.");
-                }
+                Console.WriteLine(i);
             }
         }
 
         static void F17()
         {
-            while (true)
+            Console.WriteLine("Adj meg egy pozitív egész számot:");
+            uint a = USzamBekeres();
+            
+            List<int> osztok = new List<int>();
+
+            for (int i = 1; i <= a; i++)
             {
-                Console.WriteLine("Adj meg egy pozitív egész számot:");
-                int a = SzamBekeres();
-
-                if (a > 0)
+                if (a % i == 0)
                 {
-                    List<int> osztok = new List<int>();
-
-                    for (int i = 1; i <= a; i++)
-                    {
-                        if (a % i == 0)
-                        {
-                            osztok.Add(i);
-                        }
-                    }
-
-                    for (int i = 0; i < osztok.Count(); i++)
-                    {
-                        Console.Write($"{osztok[i]} ");
-                    }
-
-                    return;
+                    osztok.Add(i);
                 }
-                else
-                {
-                    Console.WriteLine("Kérlek pozitív egész számokat adj meg.");
-                }
+            }
+
+            for (int i = 0; i < osztok.Count(); i++)
+            {
+                Console.Write($"{osztok[i]} ");
             }
         }
 
         static void F18()
         {
-            while (true)
+            Console.WriteLine("Adj meg egy pozitív egész számot:");
+            uint a = USzamBekeres();
+
+            List<int> osztok = new List<int>();
+
+            for (int i = 1; i <= a; i++)
             {
-                Console.WriteLine("Adj meg egy pozitív egész számot:");
-                int a = SzamBekeres();
-
-                if (a > 0)
+                if (a % i == 0)
                 {
-                    List<int> osztok = new List<int>();
-
-                    for (int i = 1; i <= a; i++)
-                    {
-                        if (a % i == 0)
-                        {
-                            osztok.Add(i);
-                        }
-                    }
-
-                    int osszeg = 0;
-
-                    for (int i = 0; i < osztok.Count(); i++)
-                    {
-                        osszeg += osztok[i];
-                    }
-
-                    Console.WriteLine($"Az osztok összege: {osszeg}");
-
-                    return;
-                }
-                else
-                {
-                    Console.WriteLine("Kérlek pozitív egész számokat adj meg.");
+                    osztok.Add(i);
                 }
             }
+
+            int osszeg = 0;
+
+            for (int i = 0; i < osztok.Count(); i++)
+            {
+                osszeg += osztok[i];
+            }
+
+            Console.WriteLine($"Az osztok összege: {osszeg}");
         }
 
         static void F19()
         {
-            while (true)
+            Console.WriteLine("Adj meg egy pozitív egész számot:");
+            uint a = USzamBekeres();
+
+            List<int> osztok = new List<int>();
+
+            for (int i = 1; i <= a; i++)
             {
-                Console.WriteLine("Adj meg egy pozitív egész számot:");
-                int a = SzamBekeres();
-
-                if (a > 0)
+                if (a % i == 0)
                 {
-                    List<int> osztok = new List<int>();
-
-                    for (int i = 1; i <= a; i++)
-                    {
-                        if (a % i == 0)
-                        {
-                            osztok.Add(i);
-                        }
-                    }
-
-                    int osszeg = 0;
-
-                    for (int i = 0; i < osztok.Count(); i++)
-                    {
-                        osszeg += osztok[i];
-                    }
-
-                    if (osszeg == 2 * a)
-                    {
-                        Console.WriteLine($"{a} tökéletes szám.");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"{a} nem tökéletes szám.");
-                    }
-
-                    return;
+                    osztok.Add(i);
                 }
-                else
-                {
-                    Console.WriteLine("Kérlek pozitív egész számot adj meg.");
-                }
+            }
+
+            int osszeg = 0;
+
+            for (int i = 0; i < osztok.Count(); i++)
+            {
+                osszeg += osztok[i];
+            }
+
+            if (osszeg == 2 * a)
+            {
+                Console.WriteLine($"{a} tökéletes szám.");
+            }
+            else
+            {
+                Console.WriteLine($"{a} nem tökéletes szám.");
             }
         }
 
         static void F20()
         {
-            while (true)
-            {
-                Console.WriteLine("Hatványalap:");
-                int a = SzamBekeres();
-                Console.WriteLine("Kitevő:");
-                int b = SzamBekeres();
-
-                if (a > 0 && b > 0)
-                {
-                    Console.WriteLine($"Hatványérték: {Math.Pow(a, b)}");
-
-                    return;
-                }
-                else
-                {
-                    Console.WriteLine("Kérlek pozitív egész számokat adj meg.");
-                }
-            }
+            Console.WriteLine("Hatványalap:");
+            int a = ISzamBekeres();
+            Console.WriteLine("Kitevő:");
+            int b = ISzamBekeres();
+            Console.WriteLine($"Hatványérték: {Math.Pow(a, b)}");
         }
 
         static void F21()
         {
-            while (true)
-            {
-                Console.WriteLine("Adj meg egy pozitív számot:");
-                int a = SzamBekeres();
-
-                if (a > 0)
-                {
-                    Console.WriteLine("Ez a szám pozitív.");
-                    return;
-                }
-                else
-                {
-                    Console.WriteLine("Kérlek pozitív egész számot adj meg.");
-                }
-            }
+            Console.WriteLine("Adj meg egy pozitív számot:");
+            uint a = USzamBekeres();
+            Console.WriteLine("Ez a szám pozitív.");
         }
 
         static void F22()
@@ -541,7 +405,7 @@
             while (!nagyobb)
             {
                 Console.WriteLine("írj egy számot:");
-                int a = SzamBekeres();
+                int a = ISzamBekeres();
 
                 if (a < 10)
                 {
