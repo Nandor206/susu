@@ -4,7 +4,8 @@
     {
         static void Main(string[] args)
         {
-            F25();
+            F30();
+            F31();
         }
 
         static int ISzamBekeres()
@@ -523,17 +524,156 @@
 
         static void F26()
         {
-            Console.WriteLine("Adj meg egy egész számot:");
-            int num = ISzamBekeres();
+            Console.WriteLine("Adj meg egy pozitív egész számot:");
+            uint num = USzamBekeres();
 
-            int osztok_szama = 1;
-
+            int osztok = 0;
             for (int i = 1; i <= num; i++)
             {
-                if ()
+                if (num % i == 0)
                 {
+                    osztok++;
+                }
+                if (osztok > 2)
+                {
+                    break;
+                }
+            }
+            if (osztok == 2)
+            {
+                Console.WriteLine("A szám prím.");
+            }
+            else
+            {
+                Console.WriteLine("A szám nem prím.");
+            }
+        }
 
+        static void F27()
+        {
+            Console.WriteLine("Adj meg egy pozitív egész számot:");
+            uint num = USzamBekeres();
+            int osztok = 0;
+
+            for (int i = 2; i < num; i++)
+            {
+                for (int j = 1; j <= i; j++)
+                {
+                    if (i % j == 0)
+                    {
+                        osztok++;
+                    }
+                    if (osztok > 2)
+                    {
+                        break;
+                    }
+                }
+                if (osztok == 2)
+                {
+                    Console.Write($"{i} ");
+                }
+                osztok = 0;
+            }
+        }
+
+        static void F28()
+        {
+            Console.WriteLine("Adj meg egy pozitív egész számot:");
+            uint num = USzamBekeres();
+
+            List<int> osztok = new List<int>();
+
+            int osztok_szama = 0;
+            for (int i = 2; i < num; i++)
+            {
+                for (int j = 1; j <= i; j++)
+                {
+                    if (i % j == 0)
+                    {
+                        osztok_szama++;
+                    }
+                    if (osztok_szama > 2)
+                    {
+                        break;
+                    }
+                }
+                if (osztok_szama == 2)
+                {
+                    if (num % i == 0)
+                    {
+                        osztok.Add(i);
+                    }
+                }
+                osztok_szama = 0;
+            }
+
+            for (int i = 0; i < osztok.Count(); i++)
+            {
+                Console.Write($"{osztok[i]} ");
+            }
+        }
+
+        static void F29()
+        {
+            Console.WriteLine("Adj meg egy pozitív egész számot:");
+            uint num = USzamBekeres();
+
+            Console.WriteLine($"{num} = ");
+            bool elso = true;
+
+            for (uint i = 2; i <= num; i++)
+            {
+                while (num % i == 0)
+                {
+                    if (!elso)
+                    {
+                        Console.Write(" * ");
+                    }
+                    Console.Write(i);
+                    num /= i;
+                    elso = false;
                 }
             }
         }
+
+        static void F30()
+        {
+            Console.WriteLine("Adj meg egy pozitív egész számot:");
+            uint a = USzamBekeres();
+            Console.WriteLine("Adj meg még egy pozitív egész számot:");
+            uint b = USzamBekeres();
+
+            while (b > 0)
+            {
+                uint t = b;
+                b = a % b;
+                a = t;
+            }
+
+            Console.WriteLine($"A két szám legnagyobb közös osztója: {a}");
+        }
+
+        static void F31()
+        {
+            Console.WriteLine("Adj meg egy pozitív egész számot:");
+            uint a = USzamBekeres();
+            Console.WriteLine("Adj meg még egy pozitív egész számot:");
+            uint b = USzamBekeres();
+
+            uint a_orig = a;
+            uint b_orig = b;
+
+            while (b > 0)
+            {
+                uint t = b;
+                b = a % b;
+                a = t;
+            }
+
+            uint lnko = a;
+            uint lkkt = (a_orig * b_orig) / lnko;
+
+            Console.WriteLine($"A két szám legkisebb közös többszöröse: {lkkt}");
+        }
+    }
 }
