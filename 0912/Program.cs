@@ -773,28 +773,30 @@
             }
         }
 
-        static void F41() // TODO!
+        static void F41()
         {
-            List<char> chars = new List<char>();
-            for (char c = 'A'; c <= 'Z'; c++)
+            char[] chars = new char[26];
+            for (int i = 0; i < 26; i++)
             {
-                chars.Add(c);
+                chars[i] = (char)(i+65);
             }
 
-            for (int i = 0; i < chars.Count(); i++)
+            for (int i = 0; i < chars.Length; i++)
             {
-                for (int j = 0; j < chars.Count(); j++)
+                for (int j = 0; j < chars.Length; j++)
                 {
                     Console.Write(chars[j]);
                 }
                 Console.WriteLine();
 
-                List<char> temp = chars;
-                for (int j = 0; j < chars.Count(); j++)
+                char[] temp = new char[chars.Length];
+                for (int j = 0; j < chars.Length - 1; j++)
                 {
-                    chars[i] = temp[i + 1];
+                    temp[j] = chars[j + 1];
                 }
-                chars[chars.Count() - 1] = temp[0];
+                temp[temp.Length - 1] = chars[0];
+
+                chars = temp;
             }
 
         }
