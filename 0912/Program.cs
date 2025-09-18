@@ -4,8 +4,7 @@
     {
         static void Main(string[] args)
         {
-            F30();
-            F31();
+            F41();
         }
 
         static int ISzamBekeres()
@@ -333,19 +332,13 @@
             Console.WriteLine("Adj meg egy pozitív egész számot:");
             uint a = USzamBekeres();
 
-            List<int> osztok = new List<int>();
 
             for (int i = 1; i <= a; i++)
             {
                 if (a % i == 0)
                 {
-                    osztok.Add(i);
+                    Console.Write($"{i} ");
                 }
-            }
-
-            for (int i = 0; i < osztok.Count(); i++)
-            {
-                Console.Write($"{osztok[i]} ");
             }
         }
 
@@ -355,20 +348,14 @@
             uint a = USzamBekeres();
 
             List<int> osztok = new List<int>();
+            int osszeg = 0;
 
             for (int i = 1; i <= a; i++)
             {
                 if (a % i == 0)
                 {
-                    osztok.Add(i);
+                    osszeg += i;
                 }
-            }
-
-            int osszeg = 0;
-
-            for (int i = 0; i < osztok.Count(); i++)
-            {
-                osszeg += osztok[i];
             }
 
             Console.WriteLine($"Az osztok összege: {osszeg}");
@@ -379,26 +366,19 @@
             Console.WriteLine("Adj meg egy pozitív egész számot:");
             uint a = USzamBekeres();
 
-            List<int> osztok = new List<int>();
-
+            int osszeg = 0;
             for (int i = 1; i <= a; i++)
             {
                 if (a % i == 0)
                 {
-                    osztok.Add(i);
+                    osszeg += i;
                 }
             }
 
-            int osszeg = 0;
-
-            for (int i = 0; i < osztok.Count(); i++)
-            {
-                osszeg += osztok[i];
-            }
 
             if (osszeg == 2 * a)
             {
-                Console.WriteLine($"{a} tökéletes szám.");
+                Console.WriteLine($"{a} egy tökéletes szám.");
             }
             else
             {
@@ -425,7 +405,7 @@
         static void F22()
         {
             bool nagyobb = false;
-            List<int> szamok = new List<int>();
+            int osszeg = 0;
 
             while (!nagyobb)
             {
@@ -438,14 +418,8 @@
                 }
                 else
                 {
-                    szamok.Add(a);
+                    osszeg += a;
                 }
-            }
-
-            int osszeg = 0;
-            for (int i = 0; i < szamok.Count(); i++)
-            {
-                osszeg += szamok[i];
             }
 
             Console.WriteLine($"A számok összege: {osszeg}");
@@ -455,36 +429,25 @@
         {
             Console.WriteLine("Adj meg egy egész számot:");
             int num = ISzamBekeres();
-            int num_copy = num;
+            int num_clone = num;
 
             int db = 0;
 
-            while (num_copy % 2 == 0)
+            while (num_clone % 2 == 0)
             {
                 db++;
-                num_copy /= 2;
+                num_clone /= 2;
             }
 
             string szorzat = "";
 
             for (int i = 0; i < db; i++)
             {
-                if (i == db - 1)
-                {
-                    szorzat += "2";
-                }
-                else
-                {
-                    szorzat += "2 * ";
-                }
+                szorzat += "2 * ";
             }
 
-            if (db != 0)
-            {
-                szorzat += " * ";
-            }
 
-            Console.WriteLine($"{num} = {szorzat}{num_copy}");
+            Console.WriteLine($"{num} = {szorzat}{num_clone}");
         }
 
         static void F24()
@@ -509,16 +472,16 @@
         {
             Console.WriteLine("Adj meg egy egész számot:");
             int num = ISzamBekeres();
-            int num_copy = num;
+            int num_clone = num;
 
             int db = 0;
-            while (num_copy > 3)
+            while (num_clone > 3)
             {
                 db++;
-                num_copy -= 3;
+                num_clone -= 3;
             }
 
-            Console.WriteLine($"{num} = {db}*3+{num_copy}");
+            Console.WriteLine($"{num} = {db}*3+{num_clone}");
 
         }
 
@@ -553,10 +516,11 @@
         {
             Console.WriteLine("Adj meg egy pozitív egész számot:");
             uint num = USzamBekeres();
-            int osztok = 0;
 
             for (int i = 2; i < num; i++)
             {
+                int osztok = 0;
+
                 for (int j = 1; j <= i; j++)
                 {
                     if (i % j == 0)
@@ -572,7 +536,6 @@
                 {
                     Console.Write($"{i} ");
                 }
-                osztok = 0;
             }
         }
 
@@ -581,11 +544,9 @@
             Console.WriteLine("Adj meg egy pozitív egész számot:");
             uint num = USzamBekeres();
 
-            List<int> osztok = new List<int>();
-
-            int osztok_szama = 0;
             for (int i = 2; i < num; i++)
             {
+                int osztok_szama = 0;
                 for (int j = 1; j <= i; j++)
                 {
                     if (i % j == 0)
@@ -601,15 +562,9 @@
                 {
                     if (num % i == 0)
                     {
-                        osztok.Add(i);
+                        Console.Write($"{i} ");
                     }
                 }
-                osztok_szama = 0;
-            }
-
-            for (int i = 0; i < osztok.Count(); i++)
-            {
-                Console.Write($"{osztok[i]} ");
             }
         }
 
@@ -618,7 +573,7 @@
             Console.WriteLine("Adj meg egy pozitív egész számot:");
             uint num = USzamBekeres();
 
-            Console.WriteLine($"{num} = ");
+            Console.Write($"{num} = ");
             bool elso = true;
 
             for (uint i = 2; i <= num; i++)
@@ -670,10 +625,178 @@
                 a = t;
             }
 
-            uint lnko = a;
-            uint lkkt = (a_orig * b_orig) / lnko;
+            uint lkkt = (a_orig * b_orig) / a;
 
             Console.WriteLine($"A két szám legkisebb közös többszöröse: {lkkt}");
+        }
+
+        static void F32()
+        {
+            Console.WriteLine("Adj meg egy pozitív egész számot:");
+            uint num = USzamBekeres();
+
+            for (int i = 1; i <= 10; i++)
+            {
+                Console.WriteLine($"{num} * {i} = {num * i}");
+            }
+        }
+
+        static void F33()
+        {
+            Console.WriteLine("Adj meg egy pozitív egész számot:");
+            uint num = USzamBekeres();
+
+            for (int i = 1; i <= 10; i++)
+            {
+                Console.WriteLine($"{num} + {i} = {num + i}");
+            }
+        }
+
+        static void F34() //TODO!
+        {
+
+        }
+
+        static void F35() //TODO!
+        {
+            for (int i = 97; i <= 122; i++)
+            {
+                Console.WriteLine($"{((char)i)} {i}\t");
+            }
+        }
+
+        static void F36()
+        {
+            Console.WriteLine("Add meg a sor hosszát:");
+            uint a = USzamBekeres();
+            Console.WriteLine("Add meg az oszlop hosszát:");
+            uint b = USzamBekeres();
+
+            for (int i = 1; i < a * b + 1; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    Console.Write($"O");
+                }
+                else
+                {
+                    Console.Write($"X");
+                }
+                if (i % a == 0)
+                {
+                    Console.WriteLine();
+                }
+            }
+        }
+
+        static void F37()
+        {
+            Console.WriteLine("Add meg a háromszög magasságát:");
+            uint a = USzamBekeres();
+
+            string csillag = "*";
+
+            for (int i = 1; i <= a; i++)
+            {
+                Console.WriteLine(csillag);
+                csillag += "**";
+            }
+        }
+
+        static void F38()
+        {
+            Console.WriteLine("Add meg a háromszög magasságát:");
+            uint a = USzamBekeres();
+
+            string csillag = "*";
+
+            for (int i = 1; i <= a; i++)
+            {
+                string space = "";
+                for (int j = 0; j < a - i; j++)
+                {
+                    space += " ";
+                }
+
+                Console.WriteLine(space + csillag);
+                csillag += "**";
+            }
+        }
+
+        static void F39()
+        {
+            Console.WriteLine("Add meg a téglalap hosszát:");
+            uint a = USzamBekeres();
+            Console.WriteLine("Add meg a téglalap magasságát:");
+            uint b = USzamBekeres() - 2;
+
+            string hossz = "";
+            for (int i = 0; i < a; i++)
+            {
+                hossz += "*";
+            }
+
+            string magassag = "*";
+            for (int i = 0; i < a - 2; i++)
+            {
+                magassag += " ";
+            }
+            magassag += "*";
+
+            Console.WriteLine(hossz);
+            for (int i = 0; i < b; i++)
+            {
+                Console.WriteLine(magassag);
+            }
+            Console.WriteLine(hossz);
+        }
+
+        static void F40()
+        {
+            Console.WriteLine("Adj meg egy pozitív egész számot:");
+            uint a = USzamBekeres();
+
+            for (int i = 1; i <= a; i++)
+            {
+                int osszeg = 0;
+                for (int j = 1; j <= i; j++)
+                {
+                    if (i % j == 0)
+                    {
+                        osszeg += j;
+                    }
+                }
+                if (osszeg == i * 2)
+                {
+                    Console.Write($"{i} ");
+                }
+            }
+        }
+
+        static void F41() // TODO!
+        {
+            List<char> chars = new List<char>();
+            for (char c = 'A'; c <= 'Z'; c++)
+            {
+                chars.Add(c);
+            }
+
+            for (int i = 0; i < chars.Count(); i++)
+            {
+                for (int j = 0; j < chars.Count(); j++)
+                {
+                    Console.Write(chars[j]);
+                }
+                Console.WriteLine();
+
+                List<char> temp = chars;
+                for (int j = 0; j < chars.Count(); j++)
+                {
+                    chars[i] = temp[i + 1];
+                }
+                chars[chars.Count() - 1] = temp[0];
+            }
+
         }
     }
 }
